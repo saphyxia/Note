@@ -9,8 +9,13 @@ K_k:kalman Gain
 \end{array}
 $$
 
-* Estimate Error：$$e_{EST}$$
-* Measurement Error：$$e_{MEA}$$
+* Estimate Error:
+
+$e_{EST}$
+
+* Measurement Error：
+
+$e_{MEA}$
 
 $$
 K_k = \frac{e_{EST_{k-1}}}{e_{EST_{k-1}}+e_{MEA_k}}
@@ -25,6 +30,7 @@ Step3:e_{EST_{k}} = (1 - K_k) * e_{EST_{k-1}}
 $$
 
 ## Data Fusion
+
 $$
 \begin{array}{l} 
 z_1=30g,\sigma_1=2g \\
@@ -52,7 +58,9 @@ $$
 k=\frac{\sigma_1^2}{\sigma_1^2+\sigma_2^2}
 \end{eqnarray}
 $$
+
 ## Covariance Matrix
+
 $$
 P=\begin{bmatrix}
  \sigma_x^2  & \sigma_{xy}  & \sigma_{xz}\\
@@ -60,7 +68,9 @@ P=\begin{bmatrix}
  \sigma_{zx} & \sigma_{zy}  & \sigma_z^2
 \end{bmatrix}
 $$
+
 * transition matrix
+
 $$
 \begin{array}{l}
 a=\begin{bmatrix}
@@ -82,19 +92,23 @@ a=\begin{bmatrix}
 P=\frac{1}{3}\mathbf{a}^\top a
 \end{array}
 $$
+
 ## state space Representation
 
 * Mass-Spring-Damper
 	* Elastic coefficient:K
 	* Damping coefficient:B
 	* mass displacement:X
+
 $$
 \begin{array}{l}
 m\ddot{x}+B\dot{x}+Kx=F \\
 F->u:Input
 \end{array}
 $$
+
 * state
+
 $$
 \begin{eqnarray}
 x_1&=&x \\
@@ -103,14 +117,18 @@ x_2&=&\dot{x} \\
 \dot{x_2} &=& \ddot{x}=\frac{1}{m}u-\frac{B}{m}x_2-\frac{K}{m}x_1
 \end{eqnarray}
 $$
+
 * measure
+
 $$
 \begin{array}{l}
 z_1=x=x_1 :positin \\
 z_2=\dot{x} = x_2 :velocity
 \end{array}
 $$
+
 * state space
+
 $$
 \begin{eqnarray}
 \begin{bmatrix}
@@ -148,9 +166,11 @@ $$
 Z(t)&=&HX(t)
 \end{eqnarray}
 $$
+
 * Discrete
 	* $\omega_{k-1}$:Process noise
 	* $v_k$:Measurement noise
+
 $$
 \begin{eqnarray}
 X_k &=& AX_{k-1}+Bu_k+\omega_{k-1} \\
