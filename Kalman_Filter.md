@@ -3,7 +3,7 @@
 ## Recursive Processing
 
 $$
-\begin{array}{l} 
+\begin{array}{m} 
 \hat{X_k} = \hat{X_{k-1}} + K_k * (Z_k - \hat{X_{k-1}}) \\
 K_k:kalman Gain
 \end{array}
@@ -27,7 +27,7 @@ $$
 ## Data Fusion
 
 $$
-\begin{array}{l} 
+\begin{array}{m} 
 z_1=30g,\sigma_1=2g \\
 z_2=32g,\sigma_2=4g \\
 \hat{z} = z_1+k(z_2-z_1) \\
@@ -47,11 +47,11 @@ $$
 $$
 
 $$
-\begin{eqnarray}
-\frac{\mathrm{d} \sigma_{\hat{z}}^2}{\mathrm{d} k}&=&0 \\
--2(1-k)\sigma_1^2+2k\sigma_2^2&=&0  \\
+\begin{array}{m}
+\frac{\mathrm{d} \sigma_{\hat{z}}^2}{\mathrm{d} k}=0 \\
+-2(1-k)\sigma_1^2+2k\sigma_2^2=0  \\
 k=\frac{\sigma_1^2}{\sigma_1^2+\sigma_2^2}
-\end{eqnarray}
+\end{array}
 $$
 
 ## Covariance Matrix
@@ -67,7 +67,7 @@ $$
 * transition matrix
 
 $$
-\begin{array}{l}
+\begin{array}{m}
 a=\begin{bmatrix}
   x_1 & y_1  & z_1 \\
   x_2 & y_2  & z_2 \\
@@ -96,7 +96,7 @@ $$
 	* mass displacement:X
 
 $$
-\begin{array}{l}
+\begin{array}{m}
 m\ddot{x}+B\dot{x}+Kx=F \\
 F->u:Input
 \end{array}
@@ -116,7 +116,7 @@ $$
 * measure
 
 $$
-\begin{array}{l}
+\begin{array}{m}
 z_1=x=x_1 :positin \\
 z_2=\dot{x} = x_2 :velocity
 \end{array}
@@ -174,3 +174,4 @@ Z_k &=& HX_k+v_k
 $$
 
 ## Derivation of Kalman Gain
+
