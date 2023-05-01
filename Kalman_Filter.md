@@ -497,5 +497,22 @@ P_k &=& P_k^- - K_kHP_k^- -P_k^-H\top K_k\top +K_kHP_k^-H\top K_k\top+K_kRK_k\to
 \end{eqnarray}
 $$
 
+## Extended Kalman Filter
 
+* Nonlinear
+    * $P(\omega) \sim N(0,Q)$
+    * $P(v) \sim N(0,R)$
+
+$$
+\begin{array}{l}
+x_k=f(x_{k-1},u_{k-1},\omega_{k-1}) \\
+z_k=h(x_k,v_k)
+\end{array}
+$$
+
+>A normally distributed random variable is no longer normally distributed after passing through a nonlinear system
+
+* Linearzation
+	* Taylor Series: $f(x)=f(x_0)+\frac{\partial f}{\partial x}(x-x_0)$
+	* Operating Point: $x_{k-1}$
 
