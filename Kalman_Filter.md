@@ -6,7 +6,7 @@
 
 $$
 \begin{array}{m} 
-\hat{X_k} = \hat{X_{k-1}} + K_k * (Z_k - \hat{X_{k-1}}) \\
+\hat{x_k} = \hat{x_{k-1}} + K_k * (z_k - \hat{x_{k-1}}) \\
 K_k:kalman Gain
 \end{array}
 $$
@@ -21,7 +21,7 @@ $$
 $$
 \begin{array}{l} 
 Step1: K_k = \frac{e_{EST_{k-1}}}{e_{EST_{k-1}}+e_{MEA_k}} \\
-Step2: \hat{X_k} = \hat{X_{k-1}} + K_k * (Z_k - \hat{X_{k-1}}) \\
+Step2: \hat{x_k} = \hat{x_{k-1}} + K_k * (z_k - \hat{x_{k-1}}) \\
 Step3:e_{EST_{k}} = (1 - K_k) * e_{EST_{k-1}}
 \end{array}
 $$
@@ -95,7 +95,7 @@ $$
 * Mass-Spring-Damper
 	* Elastic coefficient:K
 	* Damping coefficient:B
-	* mass displacement:X
+	* mass displacement:x
 
 $$
 \begin{array}{m}
@@ -145,7 +145,7 @@ $$
   \frac{1}{m} 
 \end{bmatrix}u
 \\
-\dot{X}(t)&=&AX(t)+Bu(t)
+\dot{x}(t)&=&Ax(t)+Bu(t)
 \\
 \begin{bmatrix}
   z_1  \\
@@ -160,12 +160,12 @@ $$
   x_2 
 \end{bmatrix} 
 \\
-Z(t)&=&HX(t)
+z(t)&=&Hx(t)
 \end{eqnarray}
 $$
 
 * Discrete
-	* $X_k$: state variables
+	* $x_k$: state variables
 	* $A$: state matrix
 	* $B$: control matrix
 	* $u_k$: control variables
@@ -176,8 +176,8 @@ $$
 
 $$
 \begin{eqnarray}
-X_k &=& AX_{k-1}+Bu_{k-1}+\omega_{k-1} \\
-Z_k &=& HX_k+v_k
+x_k &=& Ax_{k-1}+Bu_{k-1}+\omega_{k-1} \\
+z_k &=& Hx_k+v_k
 \end{eqnarray}
 $$
 
@@ -187,28 +187,28 @@ $$
 
 $$
 \begin{array}{m}
-\hat{X^-_k} = A\hat{X_{k-1}}+Bu_{k-1} \\
-Z_k = HX_k \Rightarrow \hat{x_{k_{MEA}}}=H^{-1}Z_k
+\hat{x^-_k} = A\hat{x_{k-1}}+Bu_{k-1} \\
+z_k = Hx_k \Rightarrow \hat{x_{k_{MEA}}}=H^{-1}z_k
 \end{array}
 $$
 
-* $\hat{X_k}$: posterior estimation
+* $\hat{x_k}$: posterior estimation
 
 $$
 \begin{array}{m}
-\hat{X_k}=\hat{X^-_k}+G(H^{-1}Z_k-\hat{X^-_k}) \\
+\hat{x_k}=\hat{x^-_k}+G(H^{-1}z_k-\hat{x^-_k}) \\
 G\in[0,1] \\
-G=0,\hat{X_k}=\hat{X^-_k};G=1,\hat{X_k}=H^{-1}Z_k 
+G=0,\hat{x_k}=\hat{x^-_k};G=1,\hat{x_k}=H^{-1}z_k 
 \end{array}
 $$
 
 $$
 \begin{array}{m}
 G=K_kH \\
-\hat{X_k}=\hat{X^-_k}+K_k(Z_k-H\hat{X^-_k}) \\
+\hat{x_k}=\hat{x^-_k}+K_k(z_k-H\hat{x^-_k}) \\
 K_k\in[0,H^{-1}] \\
-K_k=0,\hat{X_k}=\hat{X^-_k};K_k=H^{-1},\hat{X_k}=H^{-1}Z_k \\
-K_k?\Rightarrow \hat{X_k}->X_k
+K_k=0,\hat{x_k}=\hat{x^-_k};K_k=H^{-1},\hat{x_k}=H^{-1}z_k \\
+K_k?\Rightarrow \hat{x_k}->x_k
 \end{array}
 $$
 
@@ -219,14 +219,14 @@ $$
 
 $$
 \begin{array}{m}
-VAR(X)=E(X^2)-E^2(X) \\
-target=0 \Rightarrow E^2(X)=0 \Rightarrow VAR(X)=E(X^2)
+VAR(x)=E(x^2)-E^2(x) \\
+target=0 \Rightarrow E^2(x)=0 \Rightarrow VAR(x)=E(x^2)
 \end{array}
 $$
 
 $$
 \begin{eqnarray}
-e_k&=&X_k-\hat{X_k} \\
+e_k&=&x_k-\hat{x_k} \\
 P(e_k)& \sim & (0,P) 
 \end{eqnarray}
 $$
@@ -261,7 +261,7 @@ $$
 $$
 \begin{eqnarray}
 tr(P)&=&\sigma_{e_1}^2+\sigma_{e_2}^2 \\
-tr(P)_{min} &\Rightarrow& \sigma_{min} \Rightarrow \hat{X_k}->X_k \\
+tr(P)_{min} &\Rightarrow& \sigma_{min} \Rightarrow \hat{x_k}->x_k \\
 K_k? &\Rightarrow& tr(P)_{min}
 \end{eqnarray}
 $$
@@ -392,21 +392,21 @@ $$
 
 $$
 \begin{eqnarray}
-X_k &=& AX_{k-1}+Bu_{k-1}+\omega_{k-1} \\
-Z_k &=& HX_k+v_k
+x_k &=& Ax_{k-1}+Bu_{k-1}+\omega_{k-1} \\
+z_k &=& Hx_k+v_k
 \end{eqnarray}
 $$
 
 * Priori estimate
 
 $$
-\hat{X^-_k} = A\hat{X_{k-1}}+Bu_{k-1} 
+\hat{x^-_k} = A\hat{x_{k-1}}+Bu_{k-1}
 $$
 
 * Posteriori estimate
 
 $$
-\hat{X_k}=\hat{X^-_k}+K_k(Z_k-H\hat{X^-_k}) 
+\hat{x_k}=\hat{x^-_k}+K_k(z_k-H\hat{x^-_k})
 $$
 
 * Kalman Gain
@@ -472,7 +472,7 @@ $$
 |$P_k^-/P_k$|priori/posteriori error covariance matrix|
 
 $$
-\hat{X^-_k} = A\hat{X_{k-1}}+Bu_{k-1}
+\hat{x^-_k} = A\hat{x_{k-1}}+Bu_{k-1}
 $$
 
 $$
@@ -484,7 +484,7 @@ K_k=\frac{P_k^-H\top}{HP_k^-H\top +R}
 $$
 
 $$
-\hat{X_k}=\hat{X^-_k}+K_k(Z_k-H\hat{X^-_k})
+\hat{x_k}=\hat{x^-_k}+K_k(z_k-H\hat{x^-_k})
 $$
 
 $$
@@ -516,33 +516,68 @@ $$
 	* Taylor Series: $f(x)=f(x_0)+\frac{\partial f}{\partial x}(x-x_0)$
 	* Operating Point: 
 		* $x_k:\hat{x_{k-1}}$
-        $$
-        \begin{array}{l}
-        x_k=f\hat{(x_{k-1}},u_{k-1},\omega_{k-1})+A(x_k-\hat{x_{k-1}})+\omega_k\omega_{k-1} \\
-        A=\frac{\partial f}{\partial x}_{|_{\hat{x_{k-1}},u_{k-1}}} \\
-        \omega_k=\frac{\partial f}{\partial \omega}_{|_{\hat{x_{k-1}},u_{k-1}}}
-        \end{array}
-        $$
+		* $z_k:\tilde{x_k}$
 
-        $$
-        \begin{array}{l}
-        eg: \\
-        x_1=x_1+\sin x_2=f_1 \\
-        x_2=x_1^2=f_2 \\
-        A=\frac{\partial f}{\partial x}=
-        \begin{bmatrix}
-            \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} \\
-            \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2}
-        \end{bmatrix}=
-        \begin{bmatrix}
-            1 & \cos x_2 \\
-            2x_1 & 0
-        \end{bmatrix}
-        _{|_{\hat{x_{k-1}},u_{k-1}}} \\
-        A_k=\begin{bmatrix}
-            1 & \cos \hat{x_{2_{k-1}}} \\
-            2\hat{x_{1_{k-1}}} & 0
-        \end{bmatrix}
-        \end{array}
-        $$
-		* $z_k:\hat{x_k}$
+$$
+\begin{array}{l}
+x_k=f(\hat{x_{k-1}},u_{k-1},\omega_{k-1})+A(x_k-\hat{x_{k-1}})+W\omega_{k-1} \\
+suppose:\omega_{k-1} = 0 \\
+f\hat{(x_{k-1}},u_{k-1},0)=\tilde{x_k}\\
+A=\frac{\partial f}{\partial x}_{|_{\hat{x_{k-1}},u_{k-1}}} \\
+W=\frac{\partial f}{\partial \omega}_{|_{\hat{x_{k-1}},u_{k-1}}}
+\end{array}
+$$
+
+$$
+\begin{array}{l}
+eg: \\
+x_1=x_1+\sin x_2=f_1 \\
+x_2=x_1^2=f_2 \\
+A=\frac{\partial f}{\partial x}=
+\begin{bmatrix}
+\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} \\
+\frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2}
+\end{bmatrix}=
+\begin{bmatrix}
+1 & \cos x_2 \\
+2x_1 & 0
+\end{bmatrix}
+_{|_{\hat{x_{k-1}},u_{k-1}}} \\
+A_k=\begin{bmatrix}
+1 & \cos \hat{x_{2_{k-1}}} \\
+2\hat{x_{1_{k-1}}} & 0
+\end{bmatrix}
+\end{array}
+$$
+
+$$
+\begin{array}{l}
+z_k=h(\tilde{x_k},v_k)+H(x_k-\tilde{x_k})+Vv_k \\
+suppose:v_k=0 \\
+h(\tilde{x_k},0)=\tilde{z_k} \\
+H=\frac{\partial h}{\partial x}_{|_\tilde{x_k}} \\
+V=\frac{\partial h}{\partial v}_{|_\tilde{x_k}}
+\end{array}
+$$
+
+* $P(W\omega)\sim N(0,WQW\top)$
+* $P(Vv)\sim N(0,VRV\top)$
+
+$$
+\begin{array}{l}
+x_k=\tilde{x_k}+A(x_k-\hat{x_{k-1}})+\omega\omega_{k-1} \\
+z_k=\tilde{z_k}+H(x_k-\tilde{x_k})+Vv_k
+\end{array}
+$$
+
+* Extended kalman formula
+
+$$
+\begin{array}{m}
+\hat{x^-_k}=f(\hat{x_{k-1}},u_{k-1},0) \\
+P_k^- = AP_{k-1}A\top +WQW\top \\
+K_k=\frac{P_k^-H\top}{HP_k^-H\top +VRV\top} \\
+\hat{x_k}=\hat{x^-_k}+K_k(z_k-h(\hat{x^-_k},0)) \\
+P_k = (I-K_kH)P_k^-
+\end{array}
+$$
