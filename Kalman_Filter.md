@@ -514,5 +514,35 @@ $$
 
 * Linearzation
 	* Taylor Series: $f(x)=f(x_0)+\frac{\partial f}{\partial x}(x-x_0)$
-	* Operating Point: $x_{k-1}$
+	* Operating Point: 
+		* $x_k:\hat{x_{k-1}}$
+        $$
+        \begin{array}{l}
+        x_k=f\hat{(x_{k-1}},u_{k-1},\omega_{k-1})+A(x_k-\hat{x_{k-1}})+\omega_k\omega_{k-1} \\
+        A=\frac{\partial f}{\partial x}_{|_{\hat{x_{k-1}},u_{k-1}}} \\
+        \omega_k=\frac{\partial f}{\partial \omega}_{|_{\hat{x_{k-1}},u_{k-1}}}
+        \end{array}
+        $$
 
+        $$
+        \begin{array}{l}
+        eg: \\
+        x_1=x_1+\sin x_2=f_1 \\
+        x_2=x_1^2=f_2 \\
+        A=\frac{\partial f}{\partial x}=
+        \begin{bmatrix}
+            \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} \\
+            \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2}
+        \end{bmatrix}=
+        \begin{bmatrix}
+            1 & \cos x_2 \\
+            2x_1 & 0
+        \end{bmatrix}
+        _{|_{\hat{x_{k-1}},u_{k-1}}} \\
+        A_k=\begin{bmatrix}
+            1 & \cos \hat{x_{2_{k-1}}} \\
+            2\hat{x_{1_{k-1}}} & 0
+        \end{bmatrix}
+        \end{array}
+        $$
+		* $z_k:\hat{x_k}$
