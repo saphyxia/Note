@@ -33,7 +33,7 @@ z_2=32g,\sigma_2=4g \\
 \hat{z} = z_1+k(z_2-z_1) \\
 k:kalman Gain,k\in[0,1]  \\
 k=0,\hat{z}=z_1;k=1,\hat{z}=z_2 \\
-k?->\hat{z}_{min}->\sigma_{\hat{z}_{min}}
+k?\Rightarrow\hat{z}_{min}\Rightarrow\sigma_{\hat{z}_{min}}
 \end{array}
 $$
 
@@ -98,7 +98,7 @@ $$
 $$
 \begin{array}{m}
 m\ddot{x}+B\dot{x}+Kx=F \\
-F->u:Input
+F \Rightarrow u:Input
 \end{array}
 $$
 
@@ -163,7 +163,13 @@ Z(t)&=&HX(t)
 $$
 
 * Discrete
+	* $X_k$: state variables
+	* $A$: state matrix
+	* $B$: control matrix
+	* $u_k$: control variables
 	* $\omega_{k-1}$: Process noise
+	* $z_k$: measurement variables
+	* $H$: measurement matrix
 	* $v_k$: Measurement noise
 
 $$
@@ -175,3 +181,192 @@ $$
 
 ## Derivation of Kalman Gain
 
+* $\hat{X^-_k}$: prior estimate
+
+$$
+\begin{array}{m}
+\hat{X^-_k} = A\hat{X_{k-1}}+Bu_{k-1} \\
+Z_k = HX_k \Rightarrow \hat{x_{k_{MEA}}}=H^{-}Z_k
+\end{array}
+$$
+
+* $\hat{X_k}$: posterior estimation
+
+$$
+\begin{array}{m}
+\hat{X_k}=\hat{X^-_k}+G(H^{-}Z_k-\hat{X^-_k}) \\
+G\in[0,1] \\
+G=0,\hat{X_k}=\hat{X^-_k};G=1,\hat{X_k}=H^{-}Z_k 
+\end{array}
+$$
+
+$$
+\begin{array}{m}
+G=K_kH \\
+\hat{X_k}=\hat{X^-_k}+K_k(Z_k-H\hat{X^-_k}) \\
+K_k\in[0,H^-] \\
+K_k=0,\hat{X_k}=\hat{X^-_k};K_k=H^-,\hat{X_k}=H^{-}Z_k \\
+K_k?\Rightarrow \hat{X_k}->X_k
+\end{array}
+$$
+
+* $e_k$: Error
+* $0$: target
+* $P$: Covariance matrix
+
+
+$$
+\begin{array}{m}
+VAR(X)=E(X^2)-E^2(X) \\
+target=0 \Rightarrow E^2(X)=0 \Rightarrow VAR(X)=E(X^2)
+\end{array}
+$$
+
+$$
+\begin{eqnarray}
+e_k&=&X_k-\hat{X_k} \\
+P(e_k)& \sim & (0,P) 
+\end{eqnarray}
+$$
+
+$$
+\begin{eqnarray}
+P&=&E[ee\top] \\
+ &=&E[
+\begin{bmatrix}
+    e_1 \\
+    e_2
+\end{bmatrix}
+\begin{bmatrix}
+    e_1 & e_2
+\end{bmatrix}
+] \\
+&=&
+E[
+\begin{bmatrix}
+    e_1^2 & e_1e_2 \\
+    e_2e_1 & e_2^2
+\end{bmatrix}
+] \\
+&=&
+\begin{bmatrix}
+    \sigma_{e_1}^2 & \sigma_{e_1}\sigma_{e_2} \\
+    \sigma_{e_2}\sigma_{e_1} & \sigma_{e_2}^2
+\end{bmatrix} 
+\end{eqnarray}
+$$
+
+$$
+\begin{eqnarray}
+tr(P)&=&\sigma_{e_1}^2+\sigma_{e_2}^2 \\
+tr(P)_{min} &\Rightarrow& \sigma_{min} \Rightarrow \hat{X_k}->X_k \\
+K_k? &\Rightarrow& tr(P)_{min}
+\end{eqnarray}
+$$
+
+$$
+\begin{eqnarray}
+x_k-\hat{x_k} &=& x_k-(\hat{x^-_k}+K_k(z_k-H\hat{x^-_k})) \\
+&=& x_k-\hat{x^-_k}-K_kz_k+K_kH\hat{x^-_k} \\
+&=& x_k-\hat{x^-_k}-K_kHx_k-K_kv_k+K_kH\hat{x^-_k} \\
+&=& (x_k-\hat{x^-_k})-K_kH(x_k-\hat{x^-_k})-K_kv_k \\
+&=& (I-K_kH)(x_k-\hat{x^-_k})-K_kv_k \\
+e_k^-&=&x_k-\hat{x^-_k}
+\end{eqnarray}
+$$
+
+* $(AB)\top=B\top A\top$
+* $(A+B)\top=A\top+B\top$
+
+$$
+\begin{eqnarray}
+P_k &=& E[ee\top] \\
+&=& E[(x_k-\hat{x_k})(x_k-\hat{x_k})\top] \\
+&=& E[[(I-K_kH)e_k^--k_kv_k][(I-K_kH)e_k^--k_kv_k]\top] \\
+&=& E[[(I-K_kH)e_k^--k_kv_k][e_k^-\top(I-K_kH)\top-v_k\top K_k\top]] \\
+&=& E[(I-K_kH)e_k^-e_k^-\top(I-K_kH)\top -(I-K_kH)e_k^-v_k\top K_k\top \\
+    &-&k_kv_ke_k^-\top(I-K_kH)\top+k_kv_kv_k\top K_k\top]
+\end{eqnarray}
+$$
+
+* $E(AB)=E(A)E(B)$: A,B independent
+
+$$
+\begin{array}{m}
+E[(I-K_kH)e_k^-v_k\top K_k\top]=(I-K_kH)E[e_k^-v_k\top]K_k\top \\
+E[e_k^-v_k\top]=E[e_k^-]+E[v_k\top] \\
+E[e_k^-]=0,E[v_k\top]=0 \Rightarrow E[(I-K_kH)e_k^-v_k\top K_k\top]=0 \\
+also:E[k_kv_ke_k^-\top(I-K_kH)\top]=0
+\end{array}
+$$
+
+$$
+P_k =(I-K_kH)E(e_k^-e_k^-\top)(I-K_kH)\top+K_kE(v_kv_k\top)K_k\top
+$$
+
+* $E(e_k^-e_k^-\top)=P_k^-$
+* $E(v_kv_k\top)=R$: Measurement nosie Covariance matrix
+
+$$
+\begin{eqnarray}
+P_k &=& (P_k^--K_kHP_k^-)(I\top-H\top K_k\top)+K_kRK_k\top \\
+&=& P_k^- - K_kHP_k^- -P_k^-H\top K_k\top +K_kHP_k^-H\top K_k\top+K_kRK_k\top
+\end{eqnarray}
+$$
+
+$$
+\begin{eqnarray}
+(P_k^-H\top K_k\top)\top &=& K_k(P_k^-H\top)\top \\
+&=& K_kHP_k^- \\
+\Rightarrow tr(K_kHP_k^-)&=&tr(P_k^-H\top K_k\top) \\
+\end{eqnarray}
+$$
+
+$$
+\begin{eqnarray}
+tr(P_k)&=&tr(P_k^-)-2tr(K_kHP_k^-) \\
+&+&tr(K_kHP_k^-H\top K_k\top)+tr(K_kRK_k\top)
+\end{eqnarray}
+$$
+
+* $\frac{\mathrm{d} tr(AB)}{\mathrm{d} A}=B\top$
+
+$$
+\begin{array}{m}
+A=\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} 
+\end{bmatrix}
+
+B=\begin{bmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22} 
+\end{bmatrix} \\
+
+tr(AB)=a_{11}b_{11}+a_{12}b_{21}+a_{21}b_{12}+a_{22}b_{22} \\
+
+\frac{\mathrm{d} tr(AB)}{\mathrm{d} A} = \begin{bmatrix}
+\frac{\partial tr(AB)}{\partial a_{11}}  & \frac{\partial tr(AB)}{\partial a_{12}} \\
+\frac{\partial tr(AB)}{\partial a_{21}} & \frac{\partial tr(AB)}{\partial a_{22}} 
+\end{bmatrix} =
+\begin{bmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22} 
+\end{bmatrix}=B
+\end{array}
+$$
+
+* $\frac{\mathrm{d} tr(ABA\top)}{\mathrm{d} A}=2AB$
+
+$$
+\begin{array}{m}
+\frac{\mathrm{d} tr(P_k)}{\mathrm{d} K_k} = 0 \\
+\frac{\mathrm{d} tr(P_k)}{\mathrm{d} K_k} = 0 - 2(HP_k^-)\top +2K_kHP_k^-H\top+2K_kR
+\end{array}
+$$
+
+* $P_k^-\top=P_k^-$: Covariance matrix
+
+$$
+
+$$
