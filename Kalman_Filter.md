@@ -441,3 +441,54 @@ P_k^- &=& E[(Ae_{k-1}+\omega_{k-1})(Ae_{k-1}+\omega_{k-1})\top] \\
 \end{eqnarray}
 $$
 
+* $e_{k-1},\omega_{k-1}$ independent
+* $E[e_{k-1}]=E[\omega_{k-1}]=0$
+* $E[Ae_{k-1}\omega_{k-1}\top]=AE[e_{k-1}]E[\omega_{k-1}\top]=0$
+* $also:E[\omega_{k-1}e_{k-1}\top A\top]=0$
+
+$$
+\begin{eqnarray}
+P_k^- &=& AE[e_{k-1}e_{k-1}\top]A\top+E[\omega_{k-1}\omega_{k-1}\top] \\
+&=& AP_{k-1}A\top +Q
+\end{eqnarray}
+$$
+
+* kalman formula
+
+    * predict
+        * Priori Estimate
+
+        $$
+        \hat{X^-_k} = A\hat{X_{k-1}}+Bu_{k-1}
+        $$
+
+        * Priori Error Covariance Matrix
+
+        $$
+        P_k^- = AP_{k-1}A\top +Q
+        $$
+
+    * Correction
+      * Kalman Gain
+
+        $$
+        K_k=\frac{P_k^-H\top}{HP_k^-H\top +R} 
+        $$
+
+      * Posteriori Estimate
+
+        $$
+        \hat{X_k}=\hat{X^-_k}+K_k(Z_k-H\hat{X^-_k})
+        $$
+
+      * Posteriori Error Covariance Matrix
+
+        $$
+        \begin{eqnarray}
+        P_k &=& P_k^- - K_kHP_k^- -P_k^-H\top K_k\top +K_kHP_k^-H\top K_k\top+K_kRK_k\top \\
+        &=& P_k^- - K_kHP_k^- -P_k^-H\top K_k\top +K_k(HP_k^-H\top+R)K_k\top \\
+        &=& P_k^- - K_kHP_k^- -P_k^-H\top K_k\top +\frac{P_k^-H\top}{HP_k^-H\top +R}(HP_k^-H\top+R)K_k\top \\
+        &=& P_k^- - K_kHP_k^- \\
+        &=& (I-K_kH)P_k^-
+        \end{eqnarray}
+        $$
