@@ -8,7 +8,7 @@
 
 * video course: [[卡尔曼滤波器]\_Kalman\_Filter\_全网最详细数学推导](https://space.bilibili.com/230105574/channel/collectiondetail?sid=6939).DR_CAN
 
-* note: [Kalman Filter](./Kalman_Filter.md)
+* note: [Kalman Filter](./Doc/Kalman_Filter.pdf)
    *  ```
    	  Kalman_Filter
       ├───Recursive Processing
