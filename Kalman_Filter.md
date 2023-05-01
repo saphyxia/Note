@@ -387,8 +387,8 @@ $$
 
 ## Priori/Posteriori Error Covariance Matrix
 
-* $\omega \sim p(0,Q)$
-* $v \sim p(0,R)$
+* $P(\omega) \sim N(0,Q)$
+* $P(v) \sim N(0,R)$
 
 $$
 \begin{eqnarray}
@@ -456,11 +456,20 @@ $$
 * kalman formula
 	* predict
 		* Priori Estimate
-		* Priori Error Covariance Matrix
+		* priori Error Covariance Matrix
 	* Correction
 		* Kalman Gain
 		* Posteriori Estimate
 		* Posteriori Error Covariance Matrix
+
+|Variables|Meaning|
+|  ----  | ----  |
+|A|state matrix|
+|B|control matrix|
+|Q|process noise covariance matrix|
+|R|measurement noise covariance matrix|
+|H|measurement matrix|
+|$P_k^-/P_k$|priori/posteriori error covariance matrix|
 
 $$
 \hat{X^-_k} = A\hat{X_{k-1}}+Bu_{k-1}
@@ -487,3 +496,6 @@ P_k &=& P_k^- - K_kHP_k^- -P_k^-H\top K_k\top +K_kHP_k^-H\top K_k\top+K_kRK_k\to
 &=& (I-K_kH)P_k^-
 \end{eqnarray}
 $$
+
+
+
