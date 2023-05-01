@@ -387,8 +387,8 @@ $$
 
 ## Priori/Posteriori Error Covariance Matrix
 
-* $ \omega \sim p(0,Q) $
-* $ v \sim p(0,R) $
+* $\omega \sim p(0,Q)$
+* $v \sim p(0,R)$
 
 $$
 \begin{eqnarray}
@@ -440,5 +440,4 @@ P_k^- &=& E[(Ae_{k-1}+\omega_{k-1})(Ae_{k-1}+\omega_{k-1})\top] \\
 &=& E[Ae_{k-1}e_{k-1}\top A\top]+E[Ae_{k-1}\omega_{k-1}\top]+E[\omega_{k-1}e_{k-1}\top A\top]+E[\omega_{k-1}\omega_{k-1}\top]
 \end{eqnarray}
 $$
-
 
