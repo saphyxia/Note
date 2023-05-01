@@ -9,13 +9,9 @@ K_k:kalman Gain
 \end{array}
 $$
 
-* Estimate Error:
+* Estimate Error:$e_{EST}$
 
-$e_{EST}$
-
-* Measurement Error：
-
-$e_{MEA}$
+* Measurement Error：$e_{MEA}$
 
 $$
 K_k = \frac{e_{EST_{k-1}}}{e_{EST_{k-1}}+e_{MEA_k}}
