@@ -329,20 +329,20 @@ tr(P_k)&=&tr(P_k^-)-2tr(K_kHP_k^-) \\
 \end{eqnarray}
 $$
 
+
 * $\frac{\mathrm{d} tr(AB)}{\mathrm{d} A}=B\top$
 
+
 $$
-\begin{array}{m}
 A=\begin{bmatrix}
 a_{11} & a_{12} \\
 a_{21} & a_{22} 
-\end{bmatrix} \\
+\end{bmatrix}
 
 B=\begin{bmatrix}
 b_{11} & b_{12} \\
 b_{21} & b_{22} 
 \end{bmatrix} 
-\end{array}
 $$
 
 $$
@@ -371,7 +371,3 @@ $$
 $$
 
 * $P_k^-\top=P_k^-$: Covariance matrix
-
-$$
-
-$$
