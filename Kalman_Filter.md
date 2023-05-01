@@ -9,9 +9,8 @@ K_k:kalman Gain
 \end{array}
 $$
 
-* Estimate Error:$e_{EST}$
-
-* Measurement Error：$e_{MEA}$
+* $e_{EST}$: Estimate Error 
+* $e_{MEA}$: Measurement Error
 
 $$
 K_k = \frac{e_{EST_{k-1}}}{e_{EST_{k-1}}+e_{MEA_k}}
@@ -164,8 +163,8 @@ Z(t)&=&HX(t)
 $$
 
 * Discrete
-	* $\omega_{k-1}$:Process noise
-	* $v_k$:Measurement noise
+	* $\omega_{k-1}$: Process noise
+	* $v_k$: Measurement noise
 
 $$
 \begin{eqnarray}
