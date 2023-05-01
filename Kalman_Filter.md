@@ -11,8 +11,8 @@ K_k:kalman Gain
 \end{array}
 $$
 
-* $e_{EST}$: Estimate Error 
-* $e_{MEA}$: Measurement Error
+* $e_{EST}$: Estimate error 
+* $e_{MEA}$: Measurement error
 
 $$
 K_k = \frac{e_{EST_{k-1}}}{e_{EST_{k-1}}+e_{MEA_k}}
@@ -93,9 +93,9 @@ $$
 ## state space Representation
 
 * Mass-Spring-Damper
-	* Elastic coefficient:K
-	* Damping coefficient:B
-	* mass displacement:x
+	* $K$: Elastic coefficient
+	* $B$: Damping coefficient
+	* $x$: Mass displacement
 
 $$
 \begin{array}{m}
@@ -165,13 +165,13 @@ z(t)&=&Hx(t)
 $$
 
 * Discrete
-	* $x_k$: state variables
-	* $A$: state matrix
-	* $B$: control matrix
-	* $u_k$: control variables
+	* $x_k$: State variables
+	* $A$: State matrix
+	* $B$: Control matrix
+	* $u_k$: Control variables
 	* $\omega_{k-1}$: Process noise
-	* $z_k$: measurement variables
-	* $H$: measurement matrix
+	* $z_k$: Measurement variables
+	* $H$: Measurement matrix
 	* $v_k$: Measurement noise
 
 $$
@@ -183,7 +183,7 @@ $$
 
 ## Derivation of Kalman Gain
 
-* $\hat{X^-_k}$: priori estimate
+* $\hat{X^-_k}$: Priori estimate
 
 $$
 \begin{array}{m}
@@ -192,7 +192,7 @@ z_k = Hx_k \Rightarrow \hat{x_{k_{MEA}}}=H^{-1}z_k
 \end{array}
 $$
 
-* $\hat{x_k}$: posterior estimation
+* $\hat{x_k}$: Posterior estimation
 
 $$
 \begin{array}{m}
@@ -213,7 +213,7 @@ K_k?\Rightarrow \hat{x_k}->x_k
 $$
 
 * $e_k$: Error
-* $0$: target
+* $0$: Target
 * $P$: Covariance matrix
 
 
@@ -291,7 +291,7 @@ P_k &=& E[ee\top] \\
 \end{eqnarray}
 $$
 
-* $E(AB)=E(A)E(B)$: A,B independent
+* $E(AB)=E(A)E(B)$: A,B Independent
 
 $$
 \begin{array}{m}
@@ -441,7 +441,7 @@ P_k^- &=& E[(Ae_{k-1}+\omega_{k-1})(Ae_{k-1}+\omega_{k-1})\top] \\
 \end{eqnarray}
 $$
 
-* $e_{k-1},\omega_{k-1}$ independent
+* $e_{k-1},\omega_{k-1}$ Independent
 * $E[e_{k-1}]=E[\omega_{k-1}]=0$
 * $E[Ae_{k-1}\omega_{k-1}\top]=AE[e_{k-1}]E[\omega_{k-1}\top]=0$
 * $also:E[\omega_{k-1}e_{k-1}\top A\top]=0$
@@ -453,10 +453,10 @@ P_k^- &=& AE[e_{k-1}e_{k-1}\top]A\top+E[\omega_{k-1}\omega_{k-1}\top] \\
 \end{eqnarray}
 $$
 
-* kalman formula
-	* predict
+* Kalman formula
+	* Predict
 		* Priori Estimate
-		* priori Error Covariance Matrix
+		* Priori Error Covariance Matrix
 	* Correction
 		* Kalman Gain
 		* Posteriori Estimate
@@ -570,7 +570,7 @@ z_k=\tilde{z_k}+H(x_k-\tilde{x_k})+Vv_k
 \end{array}
 $$
 
-* Extended kalman formula
+* Extended Kalman formula
 
 $$
 \begin{array}{m}
