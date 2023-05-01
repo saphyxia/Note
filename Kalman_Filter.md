@@ -186,7 +186,7 @@ $$
 $$
 \begin{array}{m}
 \hat{X^-_k} = A\hat{X_{k-1}}+Bu_{k-1} \\
-Z_k = HX_k \Rightarrow \hat{x_{k_{MEA}}}=H^{-}Z_k
+Z_k = HX_k \Rightarrow \hat{x_{k_{MEA}}}=H^{-1}Z_k
 \end{array}
 $$
 
@@ -194,9 +194,9 @@ $$
 
 $$
 \begin{array}{m}
-\hat{X_k}=\hat{X^-_k}+G(H^{-}Z_k-\hat{X^-_k}) \\
+\hat{X_k}=\hat{X^-_k}+G(H^{-1}Z_k-\hat{X^-_k}) \\
 G\in[0,1] \\
-G=0,\hat{X_k}=\hat{X^-_k};G=1,\hat{X_k}=H^{-}Z_k 
+G=0,\hat{X_k}=\hat{X^-_k};G=1,\hat{X_k}=H^{-1}Z_k 
 \end{array}
 $$
 
@@ -204,8 +204,8 @@ $$
 \begin{array}{m}
 G=K_kH \\
 \hat{X_k}=\hat{X^-_k}+K_k(Z_k-H\hat{X^-_k}) \\
-K_k\in[0,H^-] \\
-K_k=0,\hat{X_k}=\hat{X^-_k};K_k=H^-,\hat{X_k}=H^{-}Z_k \\
+K_k\in[0,H^{-1}] \\
+K_k=0,\hat{X_k}=\hat{X^-_k};K_k=H^{-1},\hat{X_k}=H^{-1}Z_k \\
 K_k?\Rightarrow \hat{X_k}->X_k
 \end{array}
 $$
@@ -372,3 +372,13 @@ $$
 $$
 
 * $P_k^-\top=P_k^-$: Covariance matrix
+
+$$
+\begin{array}{m}
+-P_k^-H\top+K_k(HP_k^-H\top +R)=0 \\
+K_k(HP_k^-H\top +R)=P_k^-H\top \\
+K_k=\frac{P_k^-H\top}{HP_k^-H\top +R} \\
+R\uparrow, K_k->0,\hat{x_k}=\hat{x_k^-} \\
+R\downarrow, K_k->H^{-1},\hat{x_k}=H^{-1}z_k
+\end{array}
+$$
