@@ -176,14 +176,14 @@ $$
 
 $$
 \begin{eqnarray}
-X_k &=& AX_{k-1}+Bu_k+\omega_{k-1} \\
+X_k &=& AX_{k-1}+Bu_{k-1}+\omega_{k-1} \\
 Z_k &=& HX_k+v_k
 \end{eqnarray}
 $$
 
 ## Derivation of Kalman Gain
 
-* $\hat{X^-_k}$: prior estimate
+* $\hat{X^-_k}$: priori estimate
 
 $$
 \begin{array}{m}
@@ -384,3 +384,61 @@ R\uparrow, K_k->0,\hat{x_k}=\hat{x_k^-} \\
 R\downarrow, K_k->H^{-1},\hat{x_k}=H^{-1}z_k
 \end{array}
 $$
+
+## Priori/Posteriori Error Covariance Matrix
+
+* $ \omega \sim p(0,Q) $
+* $ v \sim p(0,R) $
+
+$$
+\begin{eqnarray}
+X_k &=& AX_{k-1}+Bu_{k-1}+\omega_{k-1} \\
+Z_k &=& HX_k+v_k
+\end{eqnarray}
+$$
+
+* Priori estimate
+
+$$
+\hat{X^-_k} = A\hat{X_{k-1}}+Bu_{k-1} 
+$$
+
+* Posteriori estimate
+
+$$
+\hat{X_k}=\hat{X^-_k}+K_k(Z_k-H\hat{X^-_k}) 
+$$
+
+* Kalman Gain
+
+$$
+K_k=\frac{P_k^-H\top}{HP_k^-H\top +R} 
+$$
+
+* $P_k^-$?
+
+$$
+\begin{array}{m}
+P_k^- = E[e_k^-e_k^-\top] \\
+e_k^-=x_k-\hat{x_k^-} 
+\end{array}
+$$
+
+$$
+\begin{eqnarray}
+e_k^- &=& Ax_{k-1}+Bu_{k-1}+\omega_{k-1}-A\hat{x_{k-1}}-Bu_{k-1} \\
+&=& A(x_{k-1}-\hat{x_{k-1}})+\omega_{k-1} \\
+&=& Ae_{k-1}+\omega_{k-1}
+\end{eqnarray}
+$$
+
+$$
+\begin{eqnarray}
+P_k^- &=& E[(Ae_{k-1}+\omega_{k-1})(Ae_{k-1}+\omega_{k-1})\top] \\
+&=& E[(Ae_{k-1}+\omega_{k-1})(e_{k-1}\top A\top +\omega_{k-1}\top)] \\
+&=& E[Ae_{k-1}e_{k-1}\top A\top+Ae_{k-1}\omega_{k-1}\top+\omega_{k-1}e_{k-1}\top A\top+\omega_{k-1}\omega_{k-1}\top] \\
+&=& E[Ae_{k-1}e_{k-1}\top A\top]+E[Ae_{k-1}\omega_{k-1}\top]+E[\omega_{k-1}e_{k-1}\top A\top]+E[\omega_{k-1}\omega_{k-1}\top]
+\end{eqnarray}
+$$
+
+
