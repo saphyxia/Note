@@ -35,7 +35,7 @@ z_2=32g,\sigma_2=4g \\
 \hat{z} = z_1+k(z_2-z_1) \\
 k:kalman Gain,k\in[0,1]  \\
 k=0,\hat{z}=z_1;k=1,\hat{z}=z_2 \\
-k?\Rightarrow\hat{z}_{min}\Rightarrow\sigma_{\hat{z}_{min}}
+k? \Rightarrow \hat{z}_{min} \Rightarrow \sigma_{\hat{z}_{min}}
 \end{array}
 $$
 
@@ -90,7 +90,7 @@ P=\frac{1}{3}\mathbf{a}^\top a
 \end{array}
 $$
 
-## state space Representation
+## State Space Representation
 
 * Mass-Spring-Damper
 	* $K$: Elastic coefficient
@@ -261,8 +261,8 @@ $$
 $$
 \begin{eqnarray}
 tr(P)&=&\sigma_{e_1}^2+\sigma_{e_2}^2 \\
-tr(P)_{min} &\Rightarrow& \sigma_{min} \Rightarrow \hat{x_k}->x_k \\
-K_k? &\Rightarrow& tr(P)_{min}
+tr(P)_{min} & \Rightarrow & \sigma_{min} \Rightarrow \hat{x_k}->x_k \\
+K_k? & \Rightarrow & tr(P)_{min}
 \end{eqnarray}
 $$
 
@@ -522,7 +522,7 @@ $$
 \begin{array}{l}
 x_k=f(\hat{x_{k-1}},u_{k-1},\omega_{k-1})+A(x_k-\hat{x_{k-1}})+W\omega_{k-1} \\
 suppose:\omega_{k-1} = 0 \\
-f\hat{(x_{k-1}},u_{k-1},0)=\tilde{x_k}\\
+f\hat{(x_{k-1}},u_{k-1},0) = \tilde{x_k}\\
 A=\frac{\partial f}{\partial x}_{|_{\hat{x_{k-1}},u_{k-1}}} \\
 W=\frac{\partial f}{\partial \omega}_{|_{\hat{x_{k-1}},u_{k-1}}}
 \end{array}
