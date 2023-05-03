@@ -480,7 +480,7 @@ P_k^- = AP_{k-1}A\top +Q
 $$
 
 $$
-K_k=\frac{P_k^-H\top}{HP_k^-H\top +R} 
+K_k=\frac{P_k^-H\top}{HP_k^-H\top +R}
 $$
 
 $$
@@ -565,12 +565,12 @@ $$
 
 $$
 \begin{array}{l}
-x_k=\tilde{x_k}+A(x_k-\hat{x_{k-1}})+\omega\omega_{k-1} \\
+x_k=\tilde{x_k}+A(x_k-\hat{x_{k-1}})+W\omega_{k-1} \\
 z_k=\tilde{z_k}+H(x_k-\tilde{x_k})+Vv_k
 \end{array}
 $$
 
-* Extended Kalman formula
+* Extended Kalman Formula
 
 $$
 \begin{array}{m}
