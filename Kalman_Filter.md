@@ -456,16 +456,16 @@ $$
 * Kalman formula
 	* Predict
 		* Priori Estimate
-		* Priori Error Covariance Matrix
+		* Priori Covariance Matrix
 	* Correction
 		* Kalman Gain
 		* Posteriori Estimate
-		* Posteriori Error Covariance Matrix
+		* Posteriori Covariance Matrix
 
 |Variables|Meaning|
 |  ----  | ----  |
-|A|state matrix|
-|B|control matrix|
+|A|state transition matrix|
+|B|control input matrix|
 |Q|process noise covariance matrix|
 |R|measurement noise covariance matrix|
 |H|measurement matrix|
