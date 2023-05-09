@@ -165,14 +165,14 @@ z(t)&=&Hx(t)
 $$
 
 * Discrete
-	* $x_k$: State variables
-	* $A$: State matrix
-	* $B$: Control matrix
-	* $u_k$: Control variables
-	* $\omega_{k-1}$: Process noise
-	* $z_k$: Measurement variables
-	* $H$: Measurement matrix
-	* $v_k$: Measurement noise
+	* $x_k$: state vector
+	* $A$: state transition matrix
+	* $B$: control input matrix
+	* $u_k$: control vector
+	* $\omega_{k-1}$: process noise
+	* $z_k$: measurement vector
+	* $H$: measurement matrix
+	* $v_k$: measurement noise
 
 $$
 \begin{eqnarray}
@@ -385,7 +385,7 @@ R\downarrow, K_k->H^{-1},\hat{x_k}=H^{-1}z_k
 \end{array}
 $$
 
-## Priori/Posteriori Error Covariance Matrix
+## Priori/Posteriori Covariance Matrix
 
 * $P(\omega) \sim N(0,Q)$
 * $P(v) \sim N(0,R)$
@@ -469,7 +469,7 @@ $$
 |Q|process noise covariance matrix|
 |R|measurement noise covariance matrix|
 |H|measurement matrix|
-|$P_k^-/P_k$|priori/posteriori error covariance matrix|
+|$P_k^-/P_k$|priori/posteriori covariance matrix|
 
 $$
 \hat{x^-_k} = A\hat{x_{k-1}}+Bu_{k-1}
